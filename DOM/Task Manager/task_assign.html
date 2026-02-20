@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+
+    <style>
+        /* Body */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Styling */
+        form div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-heading {
+            text-align: center;
+            /* Center align heading */
+            color: #007bff;
+            /* Blue color */
+            margin-bottom: 25px;
+            /* Space between heading and form */
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+
+        form label {
+            flex-basis: 100%;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+
+        form input {
+            flex: 1 1 30%;
+            padding: 10px 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        form input:focus {
+            border-color: #007bff;
+        }
+
+        form select {
+            flex: 1 1 30%;
+            padding: 10px 30px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+            background: white;
+            appearance: none;
+            /* default arrow styling remove */
+            cursor: pointer;
+        }
+
+        form select:focus {
+            border-color: #007bff;
+        }
+
+
+        form button {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #007bff;
+            color: white;
+        }
+
+        thead td {
+            padding: 12px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background: #f1faff;
+        }
+
+        tbody .delete-btn {
+            padding: 6px 12px;
+            background: #ff4d4f;
+            /* Red color */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        tbody .delete-btn:hover {
+            background: #d9363e;
+            /* Darker red on hover */
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h2 class="form-heading">Assign Task</h2>
+
+        <form action="" id="formid">
+            <div>
+                <div>
+                    <label for="">Task</label>
+                    <input type="text" name="Task" id="task" placeholder="Enter Task">
+                </div>
+
+                <div>
+                    <label for="">User</label>
+                    <input type="text" name="user" id="user" placeholder="Enter User">
+                </div>
+
+                <div>
+                    <label for="">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="">Select Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Sr No #</td>
+                        <td>Task</td>
+                        <td>User</td>
+                        <td>Priority</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody class="tblBody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        let taskInput = document.getElementById("task")
+        let userInput = document.getElementById("user")
+        let priorityInput = document.getElementById("priority")
+
+        let form = document.getElementById("formid")
+
+        newData = []
+
+
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault()
+
+            let taskValue = taskInput.value
+            let userValue = userInput.value
+            let priorityValue = priorityInput.value
+
+
+            if (!taskValue || !userValue || !priorityValue) {
+                alert("Require Fields are filled Mandatory")
+                return
+            }
+
+
+            let object = {
+                taskValue,
+                userValue,
+                priorityValue
+            }
+
+
+            newData.push(object)
+
+            storeData()
+
+            form.reset()
+
+
+        })
+
+
+
+        let tableBody = document.querySelector(".tblBody")
+
+        function storeData() {
+            let RowTabl = ''
+            newData.forEach((items, index) => {
+                RowTabl += `<tr>
+                        <td>${index + 1}</td>
+                        <td>${items.taskValue}</td>
+                        <td>${items.userValue}</td>
+                        <td>${items.priorityValue}</td>
+                        <td>
+                        <button data-id="${index}" class="delete-btn">Delete</button>
+                        </td>
+                    </tr>`
+            });
+
+            tableBody.innerHTML = RowTabl
+
+            tableBody.addEventListener("click", (e) => {
+                if (e.target.tagName == "BUTTON") {
+                    if (confirm("Are you sure you want to delete..")) {
+                        let delIndex = e.target.getAttribute("data-id")
+                        newData.splice(delIndex, 1)
+                        storeData()
+
+                    }
+
+                }
+            })
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

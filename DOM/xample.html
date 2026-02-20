@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- replace data from heading to paragraph vice versa -->
+
+    <h1>Document Object Model</h1>
+    <p>
+        DOM is liye use hota hai taake JavaScript HTML elements ko access, change, aur control kar sakay.
+    </p>
+
+    <button>Save</button>
+
+
+    <script>
+        let head_ELement = document.querySelector("h1")
+        let Para_ELement = document.querySelector("p")
+        let Btn_ELement = document.querySelector("button")
+
+        Btn_ELement.addEventListener("click", () =>
+        {
+            head_ELementData = head_ELement.innerHTML
+            Para_ELementData = Para_ELement.innerHTML
+
+            head_ELement.innerHTML = Para_ELementData
+            Para_ELement.innerHTML = head_ELementData
+        })
+
+    </script>
+
+</body>
+
+</html>

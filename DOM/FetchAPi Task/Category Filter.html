@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Filter</title>
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Sidebar for Categories */
+        aside {
+            width: 200px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        aside h2 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        aside ul li {
+            padding: 8px 0;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        aside ul li:hover {
+            text-decoration: underline;
+        }
+
+        /* Products Grid */
+        .products {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* Product Card */
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: green;
+        }
+
+        .card button {
+            margin-top: 10px;
+            padding: 6px 12px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Category Filter Products</h1>
+
+    <div class="container">
+
+        <!-- Sidebar Categories -->
+        <aside>
+            <h2>Categories</h2>
+            <ul class="catgList">
+            </ul>
+        </aside>
+
+        <!-- Products Container -->
+        <div class="products" id="productsBox">
+            <!-- JS se yahan products show honge -->
+        </div>
+
+    </div>
+
+    <script>
+
+        let categoryListElement = document.querySelector(".catgList");
+        let productElement = document.querySelector("#productsBox");
+
+        // Get categories
+        fetch('https://dummyjson.com/products/categories')
+            .then(res => res.json())
+            .then(categories => {
+                let catlist = '';
+                categories.forEach(cat => {
+                    catlist += `<li data-id="${cat.slug}">${cat.name}</li>`;
+                });
+                categoryListElement.innerHTML = catlist;
+            });
+
+        // Click on category
+        categoryListElement.addEventListener("click", (e) => {
+            if (e.target.tagName === "LI") {
+                let currentSlug = e.target.getAttribute("data-id");
+                console.log("Selected category:", currentSlug);
+
+                // Fetch products of that category
+                fetch(`https://dummyjson.com/products/categories/${currentSlug}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        
+                        let productHTML = '';
+                        data.products.forEach(prod => {
+                            productHTML += `
+                    <div class="card">
+                        <img src="${prod.thumbnail}" alt="">
+                        <h3>${prod.title}</h3>
+                        <p class="price">$${prod.price}</p>
+                        <button>Add to Cart</button>
+                    </div>
+                `;
+                        });
+                        productElement.innerHTML = productHTML;
+                    })
+                    .catch(err => console.log(err));
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

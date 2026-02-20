@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family:  Georgia, Times, 'Times New Roman', serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 50px 0px;
+        }
+
+        .faqMid {
+            max-width: 1000px;
+            margin: auto;
+
+        }
+        .faqItems{
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .faqItems h3{
+            background-color: yellow;
+            padding: 8px;
+            position: relative;
+        }
+        .faqItems h3 span{
+            position: absolute;
+            right: 10px;
+        }
+        .ans{
+            padding: 15px;
+            display: none;
+        }
+        .showANS{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FAQS about Leicester Taxi Service</h1>
+    <div class="faqMid">
+        <div class="faqItems">
+            <h3>1- How to use the inDrive app? <span>+</span></h3>
+            <div class="ans">
+                1- Ready to start using inDrive? Great! Here's a quick step-by-step guide to using the app as a
+                passenger.
+                Explore how to use the services, offer a price, and choose what's fair. Discover how to use inDrive as a
+                driver.
+            </div>
+        </div>
+        <div class="faqItems">
+            <h3>2- How to view services in your area? <span>+</span></h3>
+            <div class="ans">
+                2- These may change from one city to another. After you register, just open inDrive and you can view
+                what's available.
+            </div>
+        </div>
+        <div class="faqItems">
+            <h3>3- How to view services in your area? <span>+</span></h3>
+            <div class="ans">
+                3- These may change from one city to another. After you register, just open inDrive and you can view
+                what's available.
+            </div>
+        </div>
+        <div class="faqItems">
+            <h3>4- How to view services in your area?<span>+</span></h3>
+            <div class="ans">
+                4- These may change from one city to another. After you register, just open inDrive and you can view
+                what's available.
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let allQuestion = document.querySelectorAll(".faqItems h3")
+
+    allQuestion.forEach((question,index) => {
+        question.addEventListener("click", ()=>{
+ 
+            
+            allQuestion.forEach((q,i) => {
+                if(i != index){
+                    q.lastElementChild.innerHTML = "+"
+                    q.nextElementSibling.classList.remove("showANS");  // jo question click kia usko chor k baki sb remove ho jay gay
+                }
+            })
+
+        // click question logic
+        if(question.lastElementChild.innerHTML == "+")
+        {
+            question.lastElementChild.innerHTML = "-"
+        }
+        else{
+            question.lastElementChild.innerHTML = "+"
+        }
+            question.nextElementSibling.classList.toggle("showANS")
+        })
+    })
+</script>
+</html>

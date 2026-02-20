@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object</title>
+    <style>
+        .main{
+            width: 1000px;
+            height: 500px;
+            margin: auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <button>button</button>
+    </div>
+    
+</body>
+
+<script>
+    let mainElement = document.querySelector(".main")
+
+    mainElement.addEventListener("click", (e)=>{
+        console.log(e.type)  // konsa event lagaya
+        console.log(e.target);  // jispe click hua
+        console.log(e.currentTarget);  // is meinELement
+        
+    })
+</script>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submit & prevent default & get value</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .formSection {
+            display: grid;
+            grid-template-columns: 20% auto;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .formSection form {
+            box-shadow: 0px 0px 10px 2px #c5c4c4;
+            padding: 20px;
+        }
+
+        .formSection form h3 {
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .inputOuter {
+            margin-bottom: 10px;
+        }
+
+        .inputOuter {
+            display: block;
+            font-size: 14px;
+        }
+
+        .inputOuter input {
+            width: 100%;
+            height: 30px;
+        }
+
+        .formSection form button {
+            width: 100%;
+            border: none;
+            background-color: red;
+            color: rgb(255, 255, 255);
+            padding: 10px 0px;
+        }
+
+        /* Table Body Styling */
+        table tbody tr {
+            height: 40px;
+            background: #f9f9f9;
+            transition: 0.3s;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #eaeaea;
+        }
+
+        /* Hover Effect */
+        table tbody tr:hover {
+            background: #d1e7ff;
+        }
+
+        /* Table Data */
+        table tbody td {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        /* Delete Button */
+        table tbody button {
+            background: crimson;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        table tbody button:hover {
+            background: darkred;
+        }
+
+        .error {
+            font-size: 12px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="formSection">
+        <form action="">
+            <h3>Enquire Now</h3>
+            <div class="error"></div>
+            <div class="inputOuter">
+                <label for="">Name</label>
+                <input type="text" name="userName" value="">
+            </div>
+            <div class="inputOuter">
+                <label for="">Email</label>
+                <input type="email" name="userEmail" value="">
+            </div>
+            <div class="inputOuter">
+                <label for="">Phone</label>
+                <input type="text" name="userPhone" value="">
+            </div>
+            <button>Save</button>
+        </form>
+
+        <div>
+            <table
+                style="width:100%; border-collapse:collapse; text-align:center; font-family:Arial, sans-serif; margin-top:20px;">
+
+                <thead>
+                    <tr style="background:#333; color:white; height:40px;">
+                        <th># Sr</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody class="tablBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+</body>
+
+<script>
+    let formElement = document.querySelector(".formSection form")
+
+    let userData = []   // array
+    let errorData = document.querySelector(".error")
+
+
+    formElement.addEventListener("submit", (e) => {
+        console.log(e.target);  // form tag he dega jb app form tag pe kam kry gay
+
+        // get value
+        let userName = e.target.userName.value
+        let userEmail = e.target.userEmail.value
+        let userPhone = e.target.userPhone.value
+
+        let userObject = {
+            userName,
+            userEmail,
+            userPhone
+        }
+
+        let checkMyEMail = userData.find((items) => items.userEmail == userEmail)
+
+        if (checkMyEMail) {
+            errorData.innerHTML = "Email already Exist...."
+
+            // timeout function
+            setTimeout(() => {
+                errorData.innerHTML = ''
+            }, 2000);
+        }
+        else {
+            userData.push(userObject)
+            storeDatainTble()
+        }
+
+        // console.log(userData);
+
+
+        // input save krny k baad empty ho jay
+        e.target.reset()
+
+
+        e.preventDefault()  // page refresh stop
+
+    })
+
+
+    // table body data
+    let tableBody = document.querySelector(".tablBody")
+
+    let storeDatainTble = () => {
+        let tablROw = ''
+        userData.forEach((items, index) => {
+            tablROw += ` <tr>
+                        <td>${index + 1}</td>
+                        <td>${items.userName}</td>
+                        <td>${items.userEmail}</td>
+                        <td>${items.userPhone}</td>
+                        <td>
+                            <button data-id="${index}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>`
+
+        })
+        tableBody.innerHTML = tablROw
+
+    }
+
+    // delete button function
+    tableBody.addEventListener("click", (e) => {
+        if (e.target.tagName == "BUTTON") {
+            if (confirm("Are you sure u want to delete..")) {
+                let delIndex = e.target.getAttribute("data-id")
+                userData.splice(delIndex, 1)
+                storeDatainTble()   // doabra iss leay call kia k woh entry dobara nii dekhy gee
+            }
+
+
+        }
+    })
+
+
+
+
+    // let body = document.body
+
+    // body.addEventListener("contextmenu",(e)=>{
+    //     e.preventDefault()   // right click not work
+    // })
+</script>
+
+</html>

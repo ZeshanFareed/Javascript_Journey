@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f2f4f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-size: 40px;
+            color: red;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 30%;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+            cursor: pointer;   /* 👈 clickable feel */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Task Dashboard</h2>
+
+        <div class="cards">
+
+            <!-- Task Card -->
+            <div class="card" id="taskCard">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png">
+                <h3>Task</h3>
+                <p>Manage your daily tasks</p>
+            </div>
+
+            <!-- User Card -->
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png">
+                <h3>User</h3>
+                <p>User information panel</p>
+            </div>
+
+            <!-- Priority Card -->
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png">
+                <h3>Priority</h3>
+                <p>Set task priority</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        let taskCard = document.getElementById("taskCard");
+
+        taskCard.addEventListener("click", () => {
+            window.location.href = "task_assign.html";
+        });
+    </script>
+
+</body>
+
+</html>

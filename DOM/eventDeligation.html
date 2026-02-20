@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object</title>
+    <style>
+        .main {
+            width: 1000px;
+            height: 500px;
+            margin: auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2>Xeeshan</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, possimus voluptatem? Accusamus obcaecati
+            ullam facilis maxime vero nisi labore laborum delectus autem, impedit at illo in rem nobis nesciunt animi.
+        </p>
+        <button>button</button>
+    </div>
+
+</body>
+
+<script>
+    let mainElement = document.querySelector(".main")
+
+    mainElement.addEventListener("click", (e) => 
+    {
+        if (e.target.tagName == "BUTTON") {
+            alert("Hello..")
+        }
+
+    })
+</script>
+
+</html>

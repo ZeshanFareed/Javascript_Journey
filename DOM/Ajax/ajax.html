@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+
+<body>
+    <p id="parag">
+        Hello data are load...
+    </p>
+    <button>Click</button>
+
+
+    <script>
+        let btnElement = document.querySelector("button")
+
+        btnElement.addEventListener("click", FetchAPi => {
+            // var xhttp = new XMLHttpRequest();
+
+            // xhttp.onreadystatechange = function(){
+            //     if(this.readyState == 4 && this.status == 200){
+            //        document.getElementById("parag").innerHTML = this.responseText
+            //     }
+            // }
+
+
+            // xhttp.open('GET', 'ajax.txt', true)
+            // xhttp.send()
+
+
+        })
+
+        async function FetchAPi() {
+            let getData = await fetch("ajax.txt")
+            let final = await getData.text();
+            console.log(final)
+        }
+        FetchAPi()
+    </script>
+
+</body>
+
+</html>

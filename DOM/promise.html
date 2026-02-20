@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        let loginStatus = false;
+        let myPromise = new Promise((resolve, reject) => {
+            if (loginStatus) {
+                resolve({ status: 1, msg: "promise resolve" })
+            }
+            else {
+                reject({ status: 0, msg: "invalid username or password.." })
+            }
+
+        })
+
+        // then access only success data
+        myPromise.then((res) => {
+            console.log(res);
+
+        })
+
+        .catch((err) => {
+                console.log(err)
+            })
+
+
+        let doneTask = (subject) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(`${subject} homework done..`)
+                    resolve()
+                }, 1000)
+            })
+        }
+
+        // doneTask("English")
+        // .then((res) => (doneTask("Math", 2000)))
+        // .then((res) => (doneTask("urdu", 1000)))
+
+
+        // async await promis handle with function then or catch ki jagga use krty hy
+        let finishHomework = async() => {
+            let myTask = await doneTask("Math")
+            console.log(myTask)
+
+            let myTask2 = await doneTask("English")
+            console.log(myTask2)
+
+            console.log("My All Task Done..!")  // ye pehly chal jata hy hum chahty hy ye pehly na chly then add await
+        }
+
+        finishHomework()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <style>
+
+        /* Reset */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: #f4f4f4;
+        }
+
+        /* Heading */
+        h1{
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Container */
+        .container{
+            width: 90%;
+            margin: auto;
+        }
+
+        /* Products Grid */
+        .products{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* Product Card */
+        .card{
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover{
+            transform: translateY(-5px);
+        }
+
+        /* Image */
+        .card img{
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        /* Title */
+        .card h3{
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        /* Price */
+        .price{
+            font-weight: bold;
+            color: green;
+        }
+
+        /* Button */
+        .card button{
+            margin-top: 10px;
+            padding: 6px 12px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover{
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Our Products</h1>
+
+    <div class="container">
+
+        <!-- Products will come here -->
+        <div class="products" id="productsBox">
+
+            <!-- Sample Card (JS will replace this) -->
+            <!--
+            <div class="card">
+                <img src="" alt="">
+                <h3>Title</h3>
+                <p class="price">$100</p>
+                <button>Add to Cart</button>
+            </div>
+            -->
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let productsELement = document.querySelector(".products")
+
+        // API: https://dummyjson.com/products
+
+        fetch('https://dummyjson.com/products')
+        .then(res => res.json())
+        .then(finaRes => {
+            let {products} = finaRes
+
+            let concat = '';
+            products.forEach(element => {
+                concat += `<div class="card">
+                <img src="${element.thumbnail}" alt="">
+                <h3>${element.title}</h3>
+                <p class="price">$${element.price}</p>
+                <button>Add to Cart</button>
+            </div>`
+            });
+
+            productsELement.innerHTML = concat
+        })
+
+        .catch(err => {
+            console.log(err)
+        })
+
+    </script>
+
+</body>
+</html>

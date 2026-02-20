@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+        }
+
+        .modelDiv {
+            position: fixed;
+            left: 50%;
+            top: -1000px;
+            height: 350px;
+            width: 350px;
+            transition: 0.5px;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 0px 10px 2px #ccc;
+        }
+
+        .modelDiv h2 {
+            padding: 10px 0px;
+            text-align: center;
+            border-bottom: 1px solid #cccc;
+            position: relative;
+        }
+
+        .modelDiv h2 span {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button>Show Model</button>
+    <div class="modelDiv">
+        <h2>Enquire Now <span>&times;</span></h2>
+        <form action="">
+
+        </form>
+    </div>
+
+    <script>
+        let btn = document.querySelector("button")
+        let model = document.querySelector(".modelDiv")
+        let closeBtn = document.querySelector(".modelDiv span")
+
+        btn.addEventListener("click", () => 
+        {
+            model.style.top = "50%"
+        })
+
+
+        closeBtn.addEventListener("click", () => 
+        {
+            model.style.top = "-1000px"
+        })
+    </script>
+
+
+</body>
+
+</html>

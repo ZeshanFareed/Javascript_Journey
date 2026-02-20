@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- after click button change paragraph style -->
+
+    <h1 id="heading">DOM</h1>
+
+    <p id="parag">
+        DOM is liye use hota hai taake JavaScript HTML elements ko access, change, aur control kar sakay.
+    </p>
+
+    <button id="btnStyle">Css Style</button>
+
+
+</body>
+
+    <script>
+        ////////////////////////// Apply Css Style //////////////////////////
+
+        let style_Btn = document.querySelector("#btnStyle")
+        let target_para = document.querySelector("#parag")
+        let target_heading = document.querySelector("#heading")
+
+        style_Btn.addEventListener("click", () => 
+        {
+            target_para.style.color = "red"
+            target_para.style.fontSize = "20px";
+            target_heading.style.color = "blue"
+        })
+    </script>
+
+</html>

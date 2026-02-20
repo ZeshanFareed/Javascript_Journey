@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Todo App</title>
+
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .todo-app {
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #007bff;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f4faff;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: red;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="todo-app">
+
+        <h2>Mini Todo App</h2>
+
+        <div class="input-box">
+            <input type="text" id="todoInput" placeholder="Enter task">
+            <button id="addBtn">Add</button>
+        </div>
+
+        <ul id="todoList">
+        </ul>
+
+    </div>
+
+
+    <script>
+        let inputElement = document.querySelector("#todoInput")
+        let addBtn = document.querySelector("#addBtn")
+
+        let newData = [];
+
+        addBtn.addEventListener("click", function () {
+            let value = inputElement.value;
+
+            if (value == '') {
+                alert("please enter value")
+                return
+            }
+
+            newData.push(value)
+
+            inputElement.value = ''
+
+            showTodos()
+
+
+        })
+
+
+        let list = document.getElementById("todoList");
+
+        function showTodos() {
+            let htmlList = ''
+            newData.forEach((items, index) => {
+                htmlList += `<li>
+                ${items}
+                <button class="delete-btn" data-id="${index}">Delete</button>
+                </li>`
+            })
+
+        list.innerHTML = htmlList
+            
+        }
+
+        list.addEventListener("click",(e)=>{
+            if(e.target.tagName == "BUTTON"){
+                let delIndex = e.target.getAttribute("data-id");
+                newData.splice(delIndex,1)
+                showTodos() // doabra iss leay call kia k woh entry dobara dekh rahi the del krny k baad bhi
+            }        
+        })
+    </script>
+
+</body>
+
+</html>

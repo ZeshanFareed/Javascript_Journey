@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Text Preview</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .preview-box {
+            background: white;
+            padding: 30px 70px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 360px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 16px;
+            border: 2px solid #00aaff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0077cc;
+            box-shadow: 0 0 5px rgba(0,119,204,0.4);
+        }
+
+        /* Separate box for live preview */
+        .live-text-box {
+            background: #e0f7ff;
+            padding: 8px 195px;
+            border-radius: 8px;
+            border: 1px solid #00aaff;
+            min-height: 60px;
+            font-size: 18px;
+            color: #0077cc;
+            text-align: left;
+            word-wrap: break-word;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preview-box">
+        <h1>Live Text Preview</h1>
+
+        <!-- Input box -->
+        <input type="text" id="textInput" placeholder="Type something...">
+
+        <!-- Live preview in separate box -->
+        <div class="live-text-box" id="liveText"></div>
+    </div>
+
+<script>
+    let inputELement = document.querySelector("#textInput")
+    let LiveDIV = document.querySelector("#liveText")
+
+    inputELement.addEventListener("keyup", ()=>{
+        LiveDIV.innerHTML = inputELement.value
+    })
+</script>
+</body>
+</html>

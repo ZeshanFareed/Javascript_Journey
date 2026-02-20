@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Dark & white button</title>
+</head>
+<body>
+    <h2>Xeeshan</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam tempore doloremque esse accusantium iusto error nobis dolorum neque. Eaque placeat cupiditate reiciendis explicabo. Vero repellat facere provident numquam velit veniam?
+    </p>
+</body>
+
+<button id="dark">Dark</button>
+<button class="light">Light</button>
+
+<script>
+    let darkBtn = document.querySelector("#dark");
+    let lightBtn = document.querySelector(".light");
+    let body = document.querySelector("body");
+
+    darkBtn.addEventListener("click", ()=>{
+        body.style.background = "black";
+        body.style.color = "white";
+    });
+
+    lightBtn.addEventListener("click", ()=>{
+        body.style.background = "white";
+        body.style.color = "black";
+    });
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load Event</title>
+<style>
+    .main {
+        width: 1000px;
+        height: 500px;
+        background-color: red;
+        display: none; /* Initially hidden */
+    }
+</style>
+</head>
+<body>
+
+<div class="main"></div>
+
+<script>
+let maindiv = document.querySelector(".main");
+let body = document.body;
+
+// Mouse enter – green
+maindiv.addEventListener("mouseenter", () => {
+    maindiv.style.background = "green";
+});
+
+// Mouse leave – red
+maindiv.addEventListener("mouseleave", () => {
+    maindiv.style.background = "red";
+});
+
+// Mouse move – log *
+maindiv.addEventListener("mousemove", () => {
+    console.log("*");
+});
+
+// Right click – black
+body.addEventListener("contextmenu", (e)=>{
+    e.preventDefault(); // prevent default menu
+    maindiv.style.background = "black";
+});
+
+// Window load – show the div
+window.addEventListener("load", () => {
+    maindiv.style.display = "block";
+    console.log("Page fully loaded!");
+});
+</script>
+
+</body>
+</html>

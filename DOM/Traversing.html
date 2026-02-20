@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <h2>Xeeshan</h2>
+
+        <h1>Imran</h1>
+
+        <button>Save</button>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla in unde voluptatum dignissimos amet minima
+            consequuntur repellat rerum iste? Natus voluptate ratione sed eos
+            exercitationem veniam! Aliquam quam est deleniti.</p>
+
+        <h2>rooshan</h2>
+    </div>
+</body>
+
+<script>
+
+    // upward traversing
+    let btnELement = document.querySelector("button")
+
+    console.log(btnELement.parentElement);
+    console.log(btnELement.closest("div").parentElement);
+
+
+    // sideways 
+    console.log(btnELement.nextElementSibling);
+    console.log(btnELement.previousElementSibling);
+
+
+    // downward traversing
+    // let mainElement = document.querySelector(".main")
+
+
+    
+    // Nodebase traversing
+    let mainElement = document.querySelector(".main")
+
+     console.log(mainElement.childNodes);  // count space as a text
+     console.log(mainElement.firstChild);
+
+
+    // if we want access one by one
+
+    // console.log(mainElement.children[0])
+    // console.log(mainElement.children[1])
+    // console.log(mainElement.children[2])
+
+    // if we want access at a time
+    for (let v of mainElement.children) {
+        console.log(v.innerHTML)
+    }
+</script>
+
+</html>

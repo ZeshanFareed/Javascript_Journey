@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #product-section{
+            width: 100%;
+            padding: 50px 0px;
+        }
+        .main {
+            width: 1320px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+        #product-section h2
+        {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+        .productItems img{
+            width: 100%;
+            height: 250px;
+        }
+        .modelELement{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .whiteModel{
+            width: 800px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            background: white;
+            transform: translate(-50%, -50%);
+        }
+        .whiteModel img{
+            width: 100%;
+            display: block;
+        }
+        .whiteModel span{
+            right: 0px;
+            font-size: 40px;
+            cursor: pointer;
+            position: absolute;
+            color: white;
+        }
+        .showModel{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="modelELement">
+        <div class="whiteModel">
+            <span>&times;</span>
+            <img src="" alt="">
+        </div>
+    </div>
+
+    <section id="product-section">
+        <h2>Product</h2>
+        <div class="main">
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-06.jpg" alt="">
+            </div>
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-08.jpg" alt="">
+            </div>
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-05.jpg" alt="">
+            </div>
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-10.jpg" alt="">
+            </div>
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Container-No-3rd-01.jpg" alt="">
+            </div>
+             <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-08.jpg" alt="">
+            </div>
+             <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-08.jpg" alt="">
+            </div>
+            <div class="productItems">
+                <img src="https://uptownskylla.com/wp-content/uploads/2019/10/05-Contener-No-3rd-06.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    
+</body>
+
+<script>
+    let mainElement = document.querySelector(".main")
+    let modelELement = document.querySelector(".modelELement")
+    let modelImg = document.querySelector(".whiteModel img")
+    let closeBtn = document.querySelector("span")
+    let whiteModelElement = document.querySelector(".whiteModel")
+
+
+    mainElement.addEventListener("click", (e)=>{
+        if(e.target.tagName == "IMG"){
+            let clickImgPath = e.target.src;
+
+            modelImg.src = clickImgPath
+
+            modelELement.classList.add("showModel")
+        }
+    })
+
+    closeBtn.addEventListener("click", (e)=>{
+            modelELement.classList.remove("showModel")
+            modelImg.src = ""
+    })
+
+    modelELement.addEventListener("click", (e)=>{
+            modelELement.classList.remove("showModel")
+            modelImg.src = ""
+    })
+
+    whiteModelElement.addEventListener("click", (e)=>{
+            e.stopPropagation()
+    })
+
+    
+</script>
+
+</html>

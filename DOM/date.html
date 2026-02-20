@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            display: flex;
+            justify-content: center;
+            /* Left → Right center */
+            align-items: center;
+            /* Top → Bottom center */
+
+            text-align: center;
+            font-size: 40px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', Arial, sans-serif;
+
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+
+    </h1>
+</body>
+
+<script>
+    let currentDate = new Date();
+    console.log(currentDate.getFullYear());
+    console.log(currentDate.getDate());
+    console.log(currentDate.getHours() < 12 ? currentDate.getHours() : currentDate.getHours() - 12);
+    console.log(currentDate.getMinutes());
+    console.log(currentDate.getMonth());
+    console.log(currentDate.getSeconds());
+    console.log(currentDate.toLocaleDateString());
+    console.log(currentDate.toLocaleTimeString());
+
+
+    let headingElement = document.querySelector("h1")
+
+    headingElement.innerHTML = currentDate.toLocaleTimeString()
+
+    let dclok = () => {
+        let currentDate = new Date();
+        headingElement.innerHTML = currentDate.toLocaleTimeString()
+    }
+
+    dclok()  // first dafa khud call hoga phr set interval kam kry ga apna
+    setInterval(dclok, 1000)
+</script>
+
+</html>

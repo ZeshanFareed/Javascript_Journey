@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .active{
+            background-color: black;
+            color: white;
+            font-size: medium;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+
+</head>
+<body>
+
+    <p>
+         DOM is liye use hota hai taake JavaScript HTML elements ko access, change, aur control kar sakay.
+    </p>
+
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <button id="toggle">Toggle</button>
+    
+</body>
+
+<script>
+    let addELement = document.querySelector("#add")
+    let removeELement = document.querySelector("#remove")
+    let toggleELement = document.querySelector("#toggle")
+    let paraElement = document.querySelector("p")
+
+    addELement.addEventListener("click", () =>
+    {
+        paraElement.classList.add("active")
+    })
+
+
+    removeELement.addEventListener("click", () =>
+    {
+        paraElement.classList.remove("active")
+    })
+
+
+    toggleELement.addEventListener("click", () =>
+    {
+        paraElement.classList.toggle("active")
+    })
+</script>
+
+</html>

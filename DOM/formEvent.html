@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Focus, Blur & Change Example</title>
+<style>
+    input {
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid gray;
+        border-radius: 4px;
+        outline: none;
+        font-size: 16px;
+    }
+
+    input:focus {
+        box-shadow: 0 0 5px #00f;
+    }
+</style>
+</head>
+<body>
+
+<h2>Interactive Input Example</h2>
+
+<label>Username:</label>
+<input type="text" id="username" placeholder="Enter username"><br>
+
+<label>Email:</label>
+<input type="email" id="email" placeholder="Enter email"><br>
+
+<script>
+let usernameInput = document.querySelector("#username");
+let emailInput = document.querySelector("#email");
+
+// FOCUS – Jab user input me click kare
+usernameInput.addEventListener("focus", () => {
+    usernameInput.style.backgroundColor = "lightyellow";
+    console.log("Username input focused!");
+});
+
+// BLUR – Jab user input se bahar click kare
+usernameInput.addEventListener("blur", () => {
+    usernameInput.style.backgroundColor = "white";
+    console.log("Username input lost focus!");
+});
+
+// CHANGE – Jab user input ka value change kare aur bahar click kare
+usernameInput.addEventListener("change", () => {
+    alert("Username changed to: " + usernameInput.value);
+});
+
+// Email field ke liye bhi same
+emailInput.addEventListener("focus", () => {
+    emailInput.style.backgroundColor = "lightblue";
+    console.log("Email input focused!");
+});
+
+emailInput.addEventListener("blur", () => {
+    emailInput.style.backgroundColor = "white";
+    console.log("Email input lost focus!");
+});
+
+emailInput.addEventListener("change", () => {
+    alert("Email changed to: " + emailInput.value);
+});
+</script>
+
+</body>
+</html>

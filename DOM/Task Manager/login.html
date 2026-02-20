@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #ccc;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            width: 320px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Heading */
+        .box h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Labels */
+        .box label {
+            display: block;
+            text-align: left;
+            margin: 8px 0 4px;
+            font-size: 14px;
+        }
+
+        /* Inputs */
+        .box input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* Focus Effect */
+        .box input:focus {
+            border-color: #4CAF50;
+        }
+
+        /* Button */
+        .box button {
+            width: 40%;
+            padding: 10px;
+
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Button Hover */
+        .box button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="form1">
+        <div class="box">
+            <h2>Login Form</h2>
+            <label for="">Username</label>
+            <input type="email" name="userName" id="userName" placeholder="xyz@gmail.com">
+            <label for="">Password</label>
+            <input type="password" name="password" id="password" value="" placeholder="********">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <script>
+        let Btn = document.querySelector("button")
+        let UserELement = document.querySelector("#userName")
+        let passwordElement = document.getElementById("password")
+        let form = document.getElementById("form1")
+
+        form.addEventListener("submit", (e) => {
+
+                e.preventDefault();
+
+                if (UserELement.value == ""  || passwordElement.value == "") {
+                    alert("Require Fields are filled Mandatory.");
+                    UserELement.focus();
+                    return;
+                }
+
+                Btn.innerText = "check auth."
+
+                setTimeout(()=>{
+                    window.location.href = "dashboard.html";
+                },2000)
+        })
+    </script>
+</body>
+
+</html>

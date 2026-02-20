@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 1000px;
+            height: 500px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+    </div>
+</body>
+
+<script>
+    let maindiv = document.querySelector(".main")
+    let body = document.body
+
+    maindiv.addEventListener("mouseenter", () => {
+        maindiv.style.background = "green";
+    })
+
+    maindiv.addEventListener("mouseleave", () => {
+        maindiv.style.background = "red";
+    })
+
+    maindiv.addEventListener("mousemove", () => {
+        console.log("*")
+    })
+
+    body.addEventListener("contextmenu", ()=>{   // right click
+        maindiv.style.background = "black"
+    })
+</script>
+
+</html>
